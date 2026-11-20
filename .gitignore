@@ -1,0 +1,19 @@
+# environnement Python
+.venv/
+__pycache__/
+*.pyc
+
+# données locales : captures d'écran, journaux, tests
+ratio-capture/captures/
+ratio-capture/captures_test/
+*.log
+*.log.ancien
+
+# polices réentraînées localement (le lecteur utilise polices_apprises.json)
+lecteur/police_tableau.json
+lecteur/police_rapport.json
+
+# compilation PyInstaller
+build/
+dist/
+*.spec

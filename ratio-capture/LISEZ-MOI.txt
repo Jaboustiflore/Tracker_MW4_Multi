@@ -1,0 +1,46 @@
+RATIO CAPTURE - capture automatique de tes stats Call of Duty MW4
+===================================================================
+
+CE QUE ÇA FAIT
+Pendant que tu joues, le logiciel regarde l'écran deux fois par seconde, comme Medal ou Discord.
+Dès qu'un de ces écrans apparaît, il en garde une image, tout seul :
+  - l'écran de fin de match (VICTOIRE / DÉFAITE avec le tableau des équipes)
+  - le « Rapport de bataille » qui suit (il donne la carte jouée)
+  - Carrière > Rapport de combat > Parties récentes (une image par partie que tu sélectionnes)
+  - Carrière > Rapport de combat
+  - la page Carrière
+Tu n'as rien à faire entre les games. Une page déjà enregistrée (Carrière, Rapport) n'est reprise que si ses chiffres ont changé.
+
+Il lit uniquement ce qui s'affiche à l'écran : il ne touche pas au jeu, ni à sa mémoire,
+ni au réseau, et n'envoie aucun clic ni aucune touche.
+
+INSTALLATION (une seule fois)
+1. Dézippe ce dossier où tu veux (par exemple sur le Bureau).
+2. Double-clique sur « Lancer Ratio Capture.bat ».
+   - La première fois, il installe ce qu'il faut (1 à 3 minutes).
+   - Si Python 3.12 manque, il te propose de l'installer : réponds O, puis relance le fichier.
+3. La petite fenêtre « Ratio Capture » s'ouvre : laisse-la ouverte pendant que tu joues.
+
+RÉGLAGE DU JEU
+Mets l'affichage du jeu en « Plein écran sans bordure ». Si la fenêtre indique
+« Écran capturé tout noir », c'est ce réglage qu'il faut changer.
+
+APRÈS TA SESSION
+Clique sur « Importer » dans la fenêtre : ça ouvre Ratio Teams et le dossier des captures du jour.
+Sélectionne toutes les images du dossier et glisse-les dans la page. Vérifie les chiffres, puis Enregistrer.
+Les matchs déjà enregistrés sont complétés, pas dupliqués.
+
+ASTUCE
+Le jeu garde tes 10 dernières parties. De temps en temps, ouvre
+Carrière > Rapport de combat > Parties récentes et clique sur chaque partie :
+le logiciel capture chaque détail, et ça rattrape les parties que tu aurais jouées sans lui.
+
+LIMITES DE CETTE VERSION
+- MW4 multijoueur seulement. Warzone et DMZ arriveront quand on aura des captures de leurs écrans de fin.
+- Écran principal seulement (si tu as plusieurs écrans, joue sur l'écran principal).
+- Les images restent sur ton PC jusqu'à ce que tu les importes.
+
+EN CAS DE PROBLÈME
+Envoie à Claude le fichier ratio_capture.log (dans ce dossier) et une capture de la fenêtre.
+Test sur une image : ouvre un terminal dans ce dossier et tape
+  .venv\Scripts\python.exe ratio_capture.py --image chemin\vers\capture.png

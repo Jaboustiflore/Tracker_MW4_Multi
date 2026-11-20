@@ -1,0 +1,43 @@
+name: Compiler Ratio Capture (.exe Windows)
+
+# Se lance à la main (onglet Actions > « Run workflow ») ou quand on pousse une étiquette v1, v1.1, etc.
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ratio-capture
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Installer les dépendances
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pyinstaller
+
+      - name: Vérifier la détection sur les modèles
+        run: python -c "import detecteur; print('modèles chargés :', len(detecteur.MODELES))"
+
+      - name: Compiler RatioCapture.exe
+        run: pyinstaller --noconfirm --onefile --windowed --name RatioCapture --add-data "modeles;modeles" ratio_capture.py
+
+      - name: Préparer le dossier à télécharger
+        shell: cmd
+        run: |
+          mkdir dist\RatioCapture
+          move dist\RatioCapture.exe dist\RatioCapture\
+          copy LISEZ-MOI.txt dist\RatioCapture\
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RatioCapture-windows
+          path: ratio-capture/dist/RatioCapture
